@@ -8,19 +8,29 @@ h1 {
 	padding-left: 2vw;
 	color: #ff6200d6;
 	  text-align:center;
-
+    margin-top: 0;
 }
 h2 {
 	color: #ff6200d6;
 }
-h3 {
-	margin:0;
+#head {
+	background-color: #B1B1B1;
+	padding-top: 8px;
+
+}
+p,h1,h2,h3 {
+	  font-family: Arial, Helvetica, sans-serif;
+
+}
+.comp p {
+
+	font-weight: 10px;
+	width: 50%;
+	font-size: 20px;
 }
 .comp {
-	width: 50%;
 	display: flex;
 	flex-wrap: wrap;
-	    margin: 20px;
 }
 #main {
 	display: flex;
@@ -31,16 +41,62 @@ select {
     width: 50%;
 }
 .round {
+    /* bottom: 3.5vw; */
+    position: relative;
+    left: 100px;
+    top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: 0; */
+    /* padding: 0; */
+}
+.round label {
+  background-color:#80690091;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  position: absolute;
+    top: 6px;
+      width: 28px;
+}
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+.round input[type="checkbox"] {
+  visibility: hidden;
+  display: relative;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+/*.round {
     bottom: 3.5vw;
     position: relative;
     left: 100px;
-    /* top: 0; */
+     top: 0;
     margin: 0;
     padding: 0;
-    }
+ }*/
 
 
-.round label {
+/*.round label {
   background-color:#80690091;
   border: 1px solid #ccc;
   border-radius: 50%;
@@ -76,9 +132,9 @@ select {
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
-
+*/
 body {
-  background-color: #f1f2f3;
+  background-color: #fdfdfd;
 }
 #mapbox {
     border: 1px solid #008061;
