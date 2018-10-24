@@ -154,11 +154,14 @@ select {
 		height: 50vh;
 	}
 	#selectbox {
-	    width: 80%;
+	    width: 100%;
 	    height: auto;
 	    /* margin-left: 10px; */
 	    /* margin-top: 0; */
 	    margin: auto;
+	    padding: 0;
+	    box-shadow: none;
+	    border: none;
 	}
 	#selectbox p{
 	    font-size: 15px;
