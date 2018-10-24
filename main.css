@@ -148,3 +148,20 @@ select {
     width: 39%;
     height: 80vh;
 }
+@media screen and (max-width: 700px) {
+	#mapbox {
+		width: 100%;
+		height: 50vh;
+	}
+	#selectbox {
+	    width: 80%;
+	    height: auto;
+	    /* margin-left: 10px; */
+	    /* margin-top: 0; */
+	    margin: auto;
+	}
+	#selectbox p{
+	    font-size: 15px;
+
+	}
+}
