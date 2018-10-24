@@ -2,30 +2,36 @@ body {
 	width: 100%;
 	height: 100%;
 	/*background-color: #9e9e9e45;*/
-	background-color:blue;
-
+	/*background-color:#85DCB0;*/
+	background-color:#272727;
 }
 h1 {
 	padding-left: 2vw;
-	color: #ff6200d6;
+	/*color: #ffe400;*/
+
 	text-align:center;
     margin-top: 0;
 }
 h2 {
-	color: #ff6200d6;
+	color: #ffe400;
 }
 #head {
 
-	background-color: #B1B1B1;
+	/*background-color: #B1B1B1;*/
+	position: relative;
+	top: -10px;
 	padding-top: 8px;
-
+	background-color: #2F4454;
+	height: 8vh;
+	left: -8px;
 }
-p,h1,h2,h3 {
+p,h1,h3 {
 	  font-family: Arial, Helvetica, sans-serif;
+	color:#ffffffbd;
 
 }
 .comp p {
-
+	color:#747474;
 	font-weight: 10px;
 	width: 50%;
 	font-size: 20px;
@@ -35,13 +41,28 @@ p,h1,h2,h3 {
 .comp {
 	display: flex;
 	flex-wrap: wrap;
-	background-color: blue;
-	    margin-bottom: 10px;
+	/*background-color: #0000ff1f;*/
+	border-radius:20%;
+	margin-bottom: 10px;
+    margin-left: -10px;
+    width:80%;
+	box-shadow: 1px 5px #888888;
 
+}
+.comp p label {
+	cursor: pointer;
+
+}
+#selectbox h2 {
+	/*text-align: center;*/
+	color:#ffffffbd;
 }
 #main {
 	display: flex;
 	flex-wrap: wrap;
+}
+#power p {
+	color:#ffffffbd;
 }
 select {
     border: 2px solid #80690091;
@@ -58,14 +79,14 @@ select {
     /* padding: 0; */
 }
 .round label {
-  background-color:#80690091;
+  background-color:#FFC107;
   border: 1px solid #ccc;
   border-radius: 50%;
   cursor: pointer;
-  height: 28px;
+  height: 25px;
   position: absolute;
   /*  top: 6px;*/
-      width: 28px;
+      width: 25px;
 }
 .round label:after {
   border: 2px solid #fff;
@@ -105,67 +126,25 @@ select {
 	text-align: right;
 	font-size: 18px;
 }
-/*.round {
-    bottom: 3.5vw;
-    position: relative;
-    left: 100px;
-     top: 0;
-    margin: 0;
-    padding: 0;
- }*/
 
 
-/*.round label {
-  background-color:#80690091;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  height: 28px;
-  position: absolute;
-  width: 28px;
-}
-
-.round label:after {
-  border: 2px solid #fff;
-  border-top: none;
-  border-right: none;
-  content: "";
-  height: 6px;
-  left: 7px;
-  opacity: 0;
-  position: absolute;
-  top: 8px;
-  transform: rotate(-45deg);
-  width: 12px;
-}
-
-.round input[type="checkbox"] {
-  visibility: hidden;
-}
-
-.round input[type="checkbox"]:checked + label {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
-}
-
-.round input[type="checkbox"]:checked + label:after {
-  opacity: 1;
-}
-*/
-body {
-  background-color: #fdfdfd;
-}
 #mapbox {
     border: 1px solid #008061;
 	margin:auto;
-	width: 50%;
-	height: 70vh;
-
+	width: 60%;
+	height: 80vh;
+	    margin-top: -9px;
+    margin-left: -8px;
+	/*border-radius: 10%;*/
 }
 #selectbox {
-    border: 1px solid #008061;
-	margin:auto;
-	padding-left: 10px;
-	width: 40%;
-	height: 70vh;
+    box-shadow: 5px 2px #888888;
+    border: 1px solid #bddff88f;
+    border-radius: 2%;
+    /* background-color: #bddff88f; */
+    /* margin: auto; */
+    margin: -10px 3px 0 0;
+    padding-left: 10px;
+    width: 39%;
+    height: 80vh;
 }
