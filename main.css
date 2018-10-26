@@ -186,7 +186,7 @@ select {
   left: -9999px;
 
 }
-#lineSection {
+[id^="lineSection"] {
    position: absolute;
    top:0;
    left:0;

@@ -100,7 +100,9 @@ function createDot(count) {
 let a = 0;
 let dotArr = [];
 mapEl.addEventListener('click', (event) => {
+
 	createDot(a);
+
 	console.log(event);
 	let dot = document.getElementById("dot"+a);
 	dot.style.display = "inline-block";
@@ -108,87 +110,75 @@ mapEl.addEventListener('click', (event) => {
 	dot.style.top = `${event.clientY}px`;
 	dot.style.left = `${event.clientX}px`;
 	dot.style.zIndex = "1000";
-	//dotArr.push([]);
+
 	dotArr.push([event.clientX,event.clientY]);
 	console.log('dotarr',dotArr);
 	a++;
-	/*let line = document.getElementById('line1');
-	mapEl.style.visibility = "hidden"
-	line.style.visibility = "visible";
-	line.style.zIndex = "1000";
-	line.setAttribute("x1",100);
-	line.setAttribute("y1", 100);
 
-	line.setAttribute("x2",100);
-	line.setAttribute("y2",100);*/
-	if(a % 2 == 0) {
-				//console.log(document.getElementById('line1').x2.baseVal);
-
+	//if(a % 2 == 0) {
+	if(a != 0) {
 		createLine(dotArr);
 	}
+
 });
 
-
+let lineCount = 0;
 createLine = (arr) => {
-	/*console.log(arr[0][1],arr);
-	let main = document.getElementById("head");
-	const svg = document.createElement('svg');
-	svg.id = "lineSection";*/
-	//svg.classList.add("line");
+	let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-	//line.classList.add("line");
+	/*svg.setAttribute("height",100 );
+	svg.setAttribute("width",100 );
+	svg.style.zIndex = "1000";
+	svg.style.top = "0";
+	svg.style.left = "0";*/
+	svg.setAttribute("height",Math.abs(arr[lineCount+1][1] - arr[lineCount][1])+ 3 );
+	svg.setAttribute("width",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]) + 3 );
+	svg.id = 'lineSection' + lineCount ;
+	let main = document.getElementById("main");
+	main.appendChild(svg);
 
-	//main.appendChild(svg);
-
-	/*document.getElementById("lineSection").style.top = `${arr[0][0]}px`;
-	document.getElementById("lineSection").style.left = `${arr[0][1]}px`;*/
-	var line1 = document.createElementNS('http://www.w3.org/2000/svg','line');
+	let line1 = document.createElementNS('http://www.w3.org/2000/svg','line');
 
 	line1.id = "line"
 	console.log('line1', line1);
 
-	let lineSection = document.getElementById("lineSection");
-	/*lineSection.setAttribute("height",10);
-	lineSection.setAttribute("width",10);*/
-	lineSection.style.top =Math.min(arr[0][1],arr[1][1]) +"px";
-	lineSection.style.left =Math.min(arr[0][0],arr[1][0]) + "px";
-	if(arr[0][1] < arr[1][1]) {
-		line1.setAttribute("x1",3);
-		line1.setAttribute("y1",arr[1][1] - arr[0][1]);
+	let lineSection = document.getElementById("lineSection" + lineCount );
 
-		line1.setAttribute("x2",Math.abs(arr[1][0] - arr[0][0]));
+	lineSection.style.top =Math.min(arr[lineCount][1],arr[lineCount+1][1]) +"px";
+	lineSection.style.left =Math.min(arr[lineCount][0],arr[lineCount+1][0]) + "px";
+	//determine line position
+	if(arr[lineCount][1] < arr[lineCount + 1][1] && arr[lineCount][0] > arr[lineCount + 1][0] ) { //x1>x2 y1 < y2
+		line1.setAttribute("x1",3);
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+
+		line1.setAttribute("x2",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
+		line1.setAttribute("y2",3);
+	} else if (arr[lineCount][1] > arr[lineCount + 1][1] && arr[lineCount][0] < arr[lineCount + 1][0]) { // x1<x2 y1>y2
+		line1.setAttribute("x1",3);
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+
+		line1.setAttribute("x2",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
+		line1.setAttribute("y2",3);
+	} else if(arr[lineCount][1] > arr[lineCount + 1][1] && arr[lineCount][0] < arr[lineCount + 1][0]) {// x1>x2 y1>y2
+		line1.setAttribute("x1",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+
+		line1.setAttribute("x2", 3);
 		line1.setAttribute("y2",3);
 	} else {
-		line1.setAttribute("x1",Math.abs(arr[1][0] - arr[0][0]));
-		line1.setAttribute("y1",Math.abs(arr[1][1] - arr[0][1]));
+		line1.setAttribute("x1",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
 
 		line1.setAttribute("x2", 3);
 		line1.setAttribute("y2",3);
 	}
 
-	/*line1.setAttribute("x1",0);
-	line1.setAttribute("y1",0);
 
-	line1.setAttribute("x2",10);
-	line1.setAttribute("y2",10);*/
-	lineSection.setAttribute("height",Math.abs(arr[1][1] - arr[0][1])+ 3 );
-	lineSection.setAttribute("width",Math.abs(arr[1][0] - arr[0][0]) + 3 );
+
+	//lineSection.setAttribute("height",Math.abs(arr[lineCount+1][1] - arr[lineCount][1])+ 3 );
+	//lineSection.setAttribute("width",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]) + 3 );
 
 	lineSection.appendChild(line1);
-
-	/*lineSection.setAttribute("height",Math.abs(arr[1][1]-arr[1][0]));
-	lineSection.setAttribute("width",Math.abs(arr[0][1]-arr[0][0]));*/
-
-	/*lineSection.style.top = `${Math.abs(arr[1][1]-arr[1][0])}px`;
-	lineSection.style.left = `${Math.abs(arr[0][1]-arr[0][0])}px`;*/
-/*lineSection.style.top = `0px`;
-	lineSection.style.left = `0px`;*/
-
-	/*line1.setAttribute("x1",100)
-	line1.setAttribute("y1",100);
-
-	line1.setAttribute("x2",500);
-	line1.setAttribute("y2",500);*/
-
+	lineCount++;
 
 }
