@@ -53,7 +53,9 @@ function initMap() {
 
 map = new google.maps.Map(document.getElementById('mapbox'), {
   center: {lat: -34.397, lng: 150.644},
-  zoom:20
+  zoom:20,
+    gestureHandling: "cooperative"
+
 
 });
 
@@ -100,7 +102,8 @@ function createDot(count) {
 let a = 0;
 let dotArr = [];
 mapEl.addEventListener('click', (event) => {
-
+console.log('map', map.gestureHandling);
+	map.gestureHandling = "none";
 	createDot(a);
 
 	console.log(event);
