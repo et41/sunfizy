@@ -24,6 +24,7 @@ h2 {
 	background-color: #2F4454;
 	height: 8vh;
 	left: -8px;
+	    box-shadow: 5px 4px black;
 }
 p,h1,h3 {
 	  font-family: Arial, Helvetica, sans-serif;
@@ -31,7 +32,7 @@ p,h1,h3 {
 
 }
 .comp p {
-	color:#747474;
+	color:#9b9898;
 	font-weight: 10px;
 	width: 50%;
 	font-size: 20px;
@@ -47,6 +48,7 @@ p,h1,h3 {
     margin-left: -10px;
     width:80%;
 	box-shadow: 1px 5px #888888;
+	    height: 6vh;
 
 }
 .comp p label {
@@ -56,6 +58,7 @@ p,h1,h3 {
 #selectbox h2 {
 	/*text-align: center;*/
 	color:#ffffffbd;
+	    margin-top: 2px;
 }
 #main {
 	display: flex;
@@ -96,8 +99,8 @@ select {
   border-right: none;
   content: "";
   height: 6px;
-  left: 7px;
-  opacity: 0;
+    left: 6px;
+      opacity: 0;
   position: absolute;
   top: 8px;
   transform: rotate(-45deg);
@@ -233,3 +236,17 @@ select {
     left: 0;
 }
 
+#mapAreaSelect {
+    background-color: #2F4454;
+    position: fixed;
+    top: 15vh;
+    left: 12px;
+    z-index: 1000;
+    border: 1px solid;
+    box-shadow: 2px 2px black;
+    margin-right: 35vw;
+    width: 183px;
+    font-size: 13px;
+    color: white;
+    margin-top: 20px;
+}

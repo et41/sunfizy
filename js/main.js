@@ -54,7 +54,7 @@ function initMap() {
 map = new google.maps.Map(document.getElementById('mapbox'), {
   center: {lat: -34.397, lng: 150.644},
   zoom:20,
-    gestureHandling: "cooperative"
+  gestureHandling: "cooperative"
 
 
 });
@@ -68,9 +68,9 @@ map = new google.maps.Map(document.getElementById('mapbox'), {
               lng: position.coords.longitude
             };
 
-            infoWindow.setPosition(pos);
+            /*infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
-            infoWindow.open(map);
+            infoWindow.open(map);*/
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
