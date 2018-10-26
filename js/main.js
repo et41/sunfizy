@@ -177,7 +177,6 @@ createLine = (arr) => {
 	}
 
 
-
 	//lineSection.setAttribute("height",Math.abs(arr[lineCount+1][1] - arr[lineCount][1])+ 3 );
 	//lineSection.setAttribute("width",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]) + 3 );
 
