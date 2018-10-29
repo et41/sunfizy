@@ -127,9 +127,27 @@ mergeDots = (arr) => {
 	createLine(dotArr);
 };
 
-mapEl.addEventListener('click', (event) => {
+let mapArea = document.getElementById('mapAreaSelect');
+let mapAreaClickCount = 0;
 
-console.log('map', map.gestureHandling);
+mapArea.addEventListener('click', (event) => {
+	console.log('mapAreaClickCount',mapAreaClickCount);
+
+	if(mapAreaClickCount == 0 || mapAreaClickCount % 2 ==0) {
+		activateSelectTool();
+	}
+	else {
+
+		deactivateSelectTool();
+
+	}
+
+	mapAreaClickCount++;
+
+});
+
+dotManagement = () => {
+		console.log('map', map.gestureHandling);
 	map.gestureHandling = "none";
 	createDot(a);
 
@@ -167,9 +185,38 @@ console.log('map', map.gestureHandling);
 		createLine(dotArr);
 	}
 
-});
+}
+
+activateSelectTool = () => {
+		console.log('activateee');
+
+	mapArea.innerHTML = "Click Here to Remove" + " Your Area";
+
+	mapEl.addEventListener('click', dotManagement);
+}
 
 let lineCount = 0;
+
+deactivateSelectTool = () => {
+	console.log('deactiveted');
+	mapArea.innerHTML = "Click Here to Select" + " Your Area";
+	map.gestureHandling = "cooperative";
+
+	let main  = document.getElementById('main');
+	console.log(main);
+	let elementsRemoving = main.querySelectorAll('svg,span');
+	console.log('y',elementsRemoving);
+	elementsRemoving.forEach(e => {
+		//console.log('ee',e);
+		e.remove();
+	});
+	mapArea.innerHTML = "Click Here to Select" + " Your Area";
+	 mapEl.removeEventListener('click',dotManagement);
+	 a = 0;
+	 dotArr = [];
+	 firstDot = [];
+	 lineCount = 0;
+}
 
 createLine = (arr) => {
 	console.log('create line arrrr', arr,lineCount);
