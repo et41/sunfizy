@@ -49,13 +49,13 @@ el.addEventListener('click', (event) => {
 	}
 
 });
+
 function initMap() {
 
 map = new google.maps.Map(document.getElementById('mapbox'), {
   center: {lat: -34.397, lng: 150.644},
   zoom:20,
   gestureHandling: "cooperative"
-
 
 });
 
@@ -99,9 +99,36 @@ function createDot(count) {
 
 }
 
+createFirstDotCircle =   (arr) => {
+
+	return new Promise (function(resolve,reject){
+		const span = document.createElement('label');
+		let first = document.getElementById('dot0');
+		span.id = "dotCircle";
+		/*span.style.top = arr[1];
+		span.style.left = arr[0];*/
+		first.appendChild(span);
+		console.log('promise');
+		console.log('RESOLVE',resolve);
+		resolve('GEEEEET');
+		});
+};
+
 let a = 0;
 let dotArr = [];
+let firstDot = [];
+
+mergeDots = (arr) => {
+	console.log('mergeeeeeDOOOOTS', firstDot,dotArr);
+	/*dotArr[2][0] = arr[0][0];
+	dotArr[2][0] = arr[0][1];*/
+	dotArr.push([arr[0][0],arr[0][1]]);
+	console.log('arr', dotArr);
+	createLine(dotArr);
+};
+
 mapEl.addEventListener('click', (event) => {
+
 console.log('map', map.gestureHandling);
 	map.gestureHandling = "none";
 	createDot(a);
@@ -115,7 +142,24 @@ console.log('map', map.gestureHandling);
 	dot.style.zIndex = "1000";
 
 	dotArr.push([event.clientX,event.clientY]);
-	console.log('dotarr',dotArr);
+	//store first dots coordinate to make a circle which is going to emerge with last dot that have been drawn near to the fisrt dot.
+	if(a == 0) {
+		firstDot[0] = [event.clientX,event.clientY];
+
+		createFirstDotCircle(firstDot).then(function(e) {
+			console.log('eeeeee',e);
+			console.log('SUCCESSSsssssssss');//
+			document.getElementById('dotCircle').addEventListener('click',e => {
+			console.log('CLLLLICKKK');
+			mergeDots(firstDot);
+			});
+		},function(err) {
+			console.log('ERRRORR',err);
+		});
+
+	}
+	console.log('dotarr',dotArr,firstDot);
+
 	a++;
 
 	//if(a % 2 == 0) {
@@ -126,7 +170,9 @@ console.log('map', map.gestureHandling);
 });
 
 let lineCount = 0;
+
 createLine = (arr) => {
+	console.log('create line arrrr', arr,lineCount);
 	let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
 	/*svg.setAttribute("height",100 );
@@ -175,10 +221,6 @@ createLine = (arr) => {
 		line1.setAttribute("x2", 3);
 		line1.setAttribute("y2",3);
 	}
-
-
-	//lineSection.setAttribute("height",Math.abs(arr[lineCount+1][1] - arr[lineCount][1])+ 3 );
-	//lineSection.setAttribute("width",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]) + 3 );
 
 	lineSection.appendChild(line1);
 	lineCount++;

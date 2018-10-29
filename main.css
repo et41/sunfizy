@@ -250,3 +250,23 @@ select {
     color: white;
     margin-top: 20px;
 }
+
+#dotCircle {
+    background-color: #FFC107;
+    opacity: 0.5;
+    cursor: context-menu;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 28px;
+    top: -8px;
+    left: -12px;
+    position: absolute;
+    /* top: 6px; */
+    width: 28px;
+    margin-top: -4px;
+    /* visibility: hidden; */
+    z-index: 1000;
+    cursor: grab;
+        opacity: 0;
+}
