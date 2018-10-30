@@ -44,18 +44,18 @@
 }
 
 #pac-input {
-  position: absolute;
+    position: absolute;
     top: -999px;
     left: -999px;
     background-color: #fff;
     font-family: Roboto;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: bold;
     margin-left: 12px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 40%;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 #pac-input:focus {
