@@ -240,7 +240,7 @@ select {
 
 #mapAreaSelect {
     background-color: #2F4454;
-    position: fixed;
+    position: absolute;
     top: 8vh;
     left: 12px;
     z-index: 1000;
