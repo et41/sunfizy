@@ -73,7 +73,6 @@ el.addEventListener('click', (event) => {
 
     }
 
-    console.log('checkBox.value',checkBox.value);
 
     if(event.target.id.includes('checkbox')) {
     	console.log('checkedBox',checkBox.value);
