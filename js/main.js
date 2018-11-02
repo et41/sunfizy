@@ -1,6 +1,6 @@
 var map, infoWindow;
 let appliances = ["computer", "television", "refrigerator"];
-let devicesPower ={"computer":70, "television":80, "refrigerator": 200};
+let devicesPower ={"computer":[70,0], "television":[80,0], "refrigerator": [200,0]};
 
 
 let powerSection = document.getElementById('total');
@@ -24,7 +24,7 @@ let el = document.getElementById("selectbox");
 let clickCount = 0;
 let checkedElement ;
 
-el.addEventListener('click', (event) => {
+/*el.addEventListener('click', (event) => {
 
 	console.log('click:', event);
 	let deviceId =  event.target.id;
@@ -48,7 +48,39 @@ el.addEventListener('click', (event) => {
 		power(devicesPower[appliances[deviceNumber - 1]],1);
 	}
 
+});*/
+
+el.addEventListener('click', (event) => {
+
+	console.log('click:',  event.target.id);
+	let deviceId =  event.target.id;
+
+	var reg = /\d+/g;
+    let deviceNumber = Number(deviceId.match(reg));
+    let checkBox = document.getElementById('checkbox' + deviceNumber);
+
+    if(deviceId.includes('plus')) {
+    	//sum
+    	power(devicesPower[appliances[deviceNumber - 1]][0],1);
+    	devicesPower[appliances[deviceNumber - 1]][1] = devicesPower[appliances[deviceNumber - 1]][1] + 1;
+    	console.log('devicesPower', devicesPower);
+    	checkBox.value = devicesPower[appliances[deviceNumber - 1]][1];
+    } else if(deviceId.includes('minus') && devicesPower[appliances[deviceNumber - 1]][1] != 0 ) {
+    	//differentiate
+    	power(devicesPower[appliances[deviceNumber - 1]][0],0);
+		devicesPower[appliances[deviceNumber - 1]][1] = devicesPower[appliances[deviceNumber - 1]][1] - 1;
+    	checkBox.value = devicesPower[appliances[deviceNumber - 1]][1];
+
+    }
+
+    console.log('checkBox.value',checkBox.value);
+
+    if(event.target.id.includes('checkbox')) {
+    	console.log('checkedBox',checkBox.value);
+    }
+
 });
+
 
 function initMap() {
 
