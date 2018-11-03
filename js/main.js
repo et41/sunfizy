@@ -58,7 +58,6 @@ el.addEventListener('click', (event) => {
 	var reg = /\d+/g;
     let deviceNumber = Number(deviceId.match(reg));
     let checkBox = document.getElementById('checkbox' + deviceNumber);
-
     if(deviceId.includes('plus')) {
     	//sum
     	power(devicesPower[appliances[deviceNumber - 1]][0],1);
