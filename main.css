@@ -57,10 +57,7 @@ font-family: 'Merriweather', serif;
 	    height: 6vh;
 
 }
-.comp p label {
-	cursor: pointer;
 
-}
 #selectbox h2 {
 	/*text-align: center;*/
 	color:#ffffffbd;
