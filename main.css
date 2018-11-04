@@ -8,12 +8,16 @@ body {
 h1 {
 	padding-left: 2vw;
 	/*color: #ffe400;*/
+font-family: 'Merriweather', serif;
+	color:#ffffffbd;
 
 	text-align:center;
     margin-top: 0;
 }
 h2 {
 	color: #ffe400;
+	font-family: 'Merriweather', serif;
+
 }
 #head {
 
@@ -26,9 +30,10 @@ h2 {
 	left: -8px;
 	    box-shadow: 5px 4px black;
 }
-p,h1,h3 {
+p,h3 {
 	  font-family: Arial, Helvetica, sans-serif;
 	color:#ffffffbd;
+font-family: 'Merriweather', serif;
 
 }
 .comp p {
@@ -37,6 +42,7 @@ p,h1,h3 {
 	width: 50%;
 	font-size: 20px;
 	margin: 6px;
+	    padding-left: 10px;
 
 }
 .comp {
