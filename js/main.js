@@ -86,13 +86,17 @@ map = new google.maps.Map(document.getElementById('mapbox'), {
   center: {lat: -34.397, lng: 150.644},
   zoom:20,
   gestureHandling: "cooperative",
+  clickableIcons: false,
   mapTypeControlOptions: {
         position: google.maps.ControlPosition.LEFT_BOTTOM
   }
 
 });
 
- infoWindow = new google.maps.InfoWindow;
+ infoWindow = new google.maps.InfoWindow({
+ 	  disableAutoPan: true
+
+ });
  console.log('gooooogle:',google.maps);
  if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -117,6 +121,7 @@ map = new google.maps.Map(document.getElementById('mapbox'), {
 	    var longitude = event.latLng.lng();
 	    console.log( latitude + ', ' + longitude );
 	});
+
 	//search box creation
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
