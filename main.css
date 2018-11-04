@@ -8,7 +8,7 @@ body {
 h1 {
 	padding-left: 2vw;
 	/*color: #ffe400;*/
-font-family: 'Merriweather', serif;
+	font-family: 'Merriweather', serif;
 	color:#ffffffbd;
 
 	text-align:center;
@@ -126,7 +126,7 @@ border-width: 0px;
 	bottom: 3.5vw;
     position: relative;
 
-    left: 30vw;
+    left: 29vw;
     top: 10%;
 
 	}
@@ -224,15 +224,15 @@ border-width: 0px;
 .cssCircle {
 
     border-radius: 50%;
-    width: 6%;
-    height: 4vh;
+    width: 6.5%;
+    height: 28px;
     background: #779BCA;
     border: 1px solid #003580;
     color: #003580;
     text-align: center;
-    font: 16pt Arial, sans-serif;
+    font: 18pt Arial, sans-serif;
     position: relative;
-    left: 30vw;
+    left: 29vw;
 
 }
 
@@ -242,7 +242,7 @@ border-width: 0px;
 }
 
 .minusSign {
-    left: 20vw;
+    left: 19vw;
     touch-action: none;
 }
 .plusSign {
