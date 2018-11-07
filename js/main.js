@@ -78,26 +78,26 @@ el.addEventListener('click', (event) => {
     }
 
 });
-
+let coordinate_Arr = [];
 
 function initMap() {
 
-map = new google.maps.Map(document.getElementById('mapbox'), {
-  center: {lat: -34.397, lng: 150.644},
-  zoom:20,
-  gestureHandling: "cooperative",
-  clickableIcons: false,
-  mapTypeControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-  }
+	map = new google.maps.Map(document.getElementById('mapbox'), {
+	  center: {lat: -34.397, lng: 150.644},
+	  zoom:20,
+	  gestureHandling: "cooperative",
+	  clickableIcons: false,
+	  mapTypeControlOptions: {
+	        position: google.maps.ControlPosition.LEFT_BOTTOM
+	  }
 
-});
+	});
 
- infoWindow = new google.maps.InfoWindow({
- 	  disableAutoPan: true
+	infoWindow = new google.maps.InfoWindow({
+	  disableAutoPan: true
 
- });
- console.log('gooooogle:',google.maps);
+	});
+
  if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
@@ -116,11 +116,7 @@ map = new google.maps.Map(document.getElementById('mapbox'), {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-    google.maps.event.addListener(map, "click", function (event) {
-	    var latitude = event.latLng.lat();
-	    var longitude = event.latLng.lng();
-	    console.log( latitude + ', ' + longitude );
-	});
+
 
 	//search box creation
     var input = document.getElementById('pac-input');
@@ -180,7 +176,8 @@ map = new google.maps.Map(document.getElementById('mapbox'), {
       });
       map.fitBounds(bounds);
     });
-
+	console.log( google.maps,"google.maps.geometry" );
+//google.maps.geometry.spherical.computeArea( areaPath );
 }
 
 let mapEl = document.getElementById("mapbox");
@@ -214,26 +211,62 @@ createFirstDotCircle =   (arr) => {
 let a = 0;
 let dotArr = [];
 let firstDot = [];
+//[[244, 219], [355, 334],[406, 176]];
+let googleArr = [];
 
 mergeDots = (arr) => {
-	console.log('mergeeeeeDOOOOTS', firstDot,dotArr);
-	/*dotArr[2][0] = arr[0][0];
-	dotArr[2][0] = arr[0][1];*/
+	console.log('mergeeeeeDOOOOTS,googleArr', firstDot,dotArr);
+
+	coordinate_Arr.forEach(e => {
+		console.log('e,googleArr',e, googleArr);
+		let c = new google.maps.LatLng(e[0],e[1]);
+		googleArr.push(c);
+	});
+
 	dotArr.push([arr[0][0],arr[0][1]]);
-	console.log('arr', dotArr);
+
+
+	selection = new google.maps.Polygon(
+    {
+        paths: googleArr,
+        strokeColor: "#f00",
+        strokeOpacity: 0,
+        strokeWeight: 2,
+        fillColor: "#f00",
+        fillOpacity: 0.5
+       // fillOpacity: 0.26
+    });
+
+    selection.setMap(map);
+
+	var Area = google.maps.geometry.spherical.computeArea( googleArr );
+	console.log('AREA:',Area);
 	createLine(dotArr);
+	console.log('googleArr',googleArr,dotArr);
+
 };
 
 let mapArea = document.getElementById('mapAreaSelect');
 let mapAreaClickCount = 0;
 
 mapArea.addEventListener('click', (event) => {
+
 	console.log('mapAreaClickCount',mapAreaClickCount);
 
 	if(mapAreaClickCount == 0 || mapAreaClickCount % 2 ==0) {
+
 		activateSelectTool();
-	}
-	else {
+
+		google.maps.event.addListener(map, "click", function (event) {
+		    var latitude = event.latLng.lat();
+		    var longitude = event.latLng.lng();
+		    //console.log( latitude + ', ' + longitude,map.geometry,"google.maps.geometry" );
+		    coordinate_Arr.push([latitude,longitude]);
+		   console.log('coordinate_Arr',coordinate_Arr);
+
+		});
+
+	} else {
 
 		deactivateSelectTool();
 
@@ -243,8 +276,10 @@ mapArea.addEventListener('click', (event) => {
 
 });
 
+
 dotManagement = () => {
-		console.log('map', map.gestureHandling);
+
+	console.log('DOTTTTTTTTTTTTTT!!!!!!!!!!!!');
 	map.gestureHandling = "none";
 	createDot(a);
 
@@ -262,10 +297,7 @@ dotManagement = () => {
 		firstDot[0] = [event.clientX,event.clientY];
 
 		createFirstDotCircle(firstDot).then(function(e) {
-			console.log('eeeeee',e);
-			console.log('SUCCESSSsssssssss');//
 			document.getElementById('dotCircle').addEventListener('click',e => {
-			console.log('CLLLLICKKK');
 			mergeDots(firstDot);
 			});
 		},function(err) {
@@ -273,7 +305,6 @@ dotManagement = () => {
 		});
 
 	}
-	console.log('dotarr',dotArr,firstDot);
 
 	a++;
 
@@ -285,11 +316,12 @@ dotManagement = () => {
 }
 
 activateSelectTool = () => {
-		console.log('activateee');
+	//console.log('activateee');
 
 	mapArea.innerHTML = "Click Here to Remove" + " Your Area";
 
 	mapEl.addEventListener('click', dotManagement);
+
 }
 
 let lineCount = 0;
@@ -308,11 +340,24 @@ deactivateSelectTool = () => {
 		e.remove();
 	});
 	mapArea.innerHTML = "Click Here to Select" + " Your Area";
-	 mapEl.removeEventListener('click',dotManagement);
-	 a = 0;
-	 dotArr = [];
-	 firstDot = [];
-	 lineCount = 0;
+	mapEl.removeEventListener('click',dotManagement);
+	selection.setMap(null);
+	google.maps.event.clearListeners(map, 'click');
+
+	//set all used variables to initial values.
+	for ( i = 0 ; i < coordinate_Arr.length ; i ++) {
+		coordinate_Arr.splice(i,1);
+	}
+	for ( i = 0 ; i < googleArr.length ; i ++) {
+		googleArr.splice(i,1);
+	}
+	a = 0;
+	dotArr = [];
+	firstDot = [];
+	lineCount = 0;
+	googleArr = [];
+	coordinate_Arr = [];
+	console.log(a, dotArr, firstDot, lineCount, coordinate_Arr);
 }
 
 createLine = (arr) => {
@@ -371,13 +416,3 @@ createLine = (arr) => {
 
 }
 
-
-function initAutocomplete() {
-      /*  var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
-          mapTypeId: 'roadmap'
-        });*/
-
-        // Create the search box and link it to the UI element.
-      }
