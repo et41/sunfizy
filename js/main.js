@@ -309,6 +309,7 @@ deactivateSelectTool = () => {
 	for ( i = 0 ; i < googleArr.length ; i ++) {
 		googleArr.splice(i,1);
 	}
+	document.getElementById('areaAmount').innerHTML ="" ;
 	a = 0;
 	dotArr = [];
 	firstDot = [];
