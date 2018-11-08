@@ -15,7 +15,7 @@ function power(num, process) {
 		total = total - num;
 	}
 	powerSection.innerHTML = total + ' W';
-	console.log('total',total);
+
 	return total;
 }
 
@@ -24,35 +24,9 @@ let el = document.getElementById("selectbox");
 let clickCount = 0;
 let checkedElement ;
 
-/*el.addEventListener('click', (event) => {
-
-	console.log('click:', event);
-	let deviceId =  event.target.id;
-
-	var reg = /\d+/g;
-    let deviceNumber = Number(deviceId.match(reg));
-    //control check status if process is unchecking power must be decreased
-    if(document.getElementById(deviceId).checked != false ) {
-		document.getElementById(deviceId).setAttribute("checked", "checked");
-
-	} else {
-		document.getElementById(deviceId).removeAttribute("checked");
-		power(devicesPower[appliances[deviceNumber - 1]],0)
-	}
-
-    console.log('befrore click:', checkedElement);
-	if(deviceNumber != 0  && document.getElementById(deviceId).checked == true){
-
-		checkedElement = appliances[deviceNumber - 1];
-		console.log('clicked:',devicesPower[appliances[deviceNumber - 1]], checkedElement);
-		power(devicesPower[appliances[deviceNumber - 1]],1);
-	}
-
-});*/
 
 el.addEventListener('click', (event) => {
 
-	console.log('click:',  event.target.id);
 	let deviceId =  event.target.id;
 
 	var reg = /\d+/g;
@@ -62,7 +36,6 @@ el.addEventListener('click', (event) => {
     	//sum
     	power(devicesPower[appliances[deviceNumber - 1]][0],1);
     	devicesPower[appliances[deviceNumber - 1]][1] = devicesPower[appliances[deviceNumber - 1]][1] + 1;
-    	console.log('devicesPower', devicesPower);
     	checkBox.value = devicesPower[appliances[deviceNumber - 1]][1];
     } else if(deviceId.includes('minus') && devicesPower[appliances[deviceNumber - 1]][1] != 0 ) {
     	//differentiate
@@ -73,11 +46,9 @@ el.addEventListener('click', (event) => {
     }
 
 
-    if(event.target.id.includes('checkbox')) {
-    	console.log('checkedBox',checkBox.value);
-    }
 
 });
+
 let coordinate_Arr = [];
 
 function initMap() {
@@ -148,7 +119,6 @@ function initMap() {
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function(place) {
         if (!place.geometry) {
-          console.log("Returned place contains no geometry");
           return;
         }
         var icon = {
@@ -176,15 +146,13 @@ function initMap() {
       });
       map.fitBounds(bounds);
     });
-	console.log( google.maps,"google.maps.geometry" );
-//google.maps.geometry.spherical.computeArea( areaPath );
+
 }
 
 let mapEl = document.getElementById("mapbox");
 
 function createDot(count) {
 
-	console.log("in create Dot", count);
 	let main = document.getElementById("main");
 	const span = document.createElement('span');
 	span.id = "dot"+count;
@@ -202,8 +170,7 @@ createFirstDotCircle =   (arr) => {
 		/*span.style.top = arr[1];
 		span.style.left = arr[0];*/
 		first.appendChild(span);
-		console.log('promise');
-		console.log('RESOLVE',resolve);
+
 		resolve('GEEEEET');
 		});
 };
@@ -215,10 +182,8 @@ let firstDot = [];
 let googleArr = [];
 
 mergeDots = (arr) => {
-	console.log('mergeeeeeDOOOOTS,googleArr', firstDot,dotArr);
 
 	coordinate_Arr.forEach(e => {
-		console.log('e,googleArr',e, googleArr);
 		let c = new google.maps.LatLng(e[0],e[1]);
 		googleArr.push(c);
 	});
@@ -240,9 +205,9 @@ mergeDots = (arr) => {
     selection.setMap(map);
 
 	var Area = google.maps.geometry.spherical.computeArea( googleArr );
-	console.log('AREA:',Area);
+	Area = Area.toFixed(2);
+	document.getElementById('areaAmount').innerHTML = Area + " " + '\u33A1' ;
 	createLine(dotArr);
-	console.log('googleArr',googleArr,dotArr);
 
 };
 
@@ -251,7 +216,6 @@ let mapAreaClickCount = 0;
 
 mapArea.addEventListener('click', (event) => {
 
-	console.log('mapAreaClickCount',mapAreaClickCount);
 
 	if(mapAreaClickCount == 0 || mapAreaClickCount % 2 ==0) {
 
@@ -260,9 +224,7 @@ mapArea.addEventListener('click', (event) => {
 		google.maps.event.addListener(map, "click", function (event) {
 		    var latitude = event.latLng.lat();
 		    var longitude = event.latLng.lng();
-		    //console.log( latitude + ', ' + longitude,map.geometry,"google.maps.geometry" );
 		    coordinate_Arr.push([latitude,longitude]);
-		   console.log('coordinate_Arr',coordinate_Arr);
 
 		});
 
@@ -279,11 +241,9 @@ mapArea.addEventListener('click', (event) => {
 
 dotManagement = () => {
 
-	console.log('DOTTTTTTTTTTTTTT!!!!!!!!!!!!');
 	map.gestureHandling = "none";
 	createDot(a);
 
-	console.log(event);
 	let dot = document.getElementById("dot"+a);
 	dot.style.display = "inline-block";
 	dot.style.visibility = "visible";
@@ -306,12 +266,12 @@ dotManagement = () => {
 
 	}
 
-	a++;
 
 	//if(a % 2 == 0) {
 	if(a != 0) {
 		createLine(dotArr);
 	}
+	a++;
 
 }
 
@@ -327,16 +287,14 @@ activateSelectTool = () => {
 let lineCount = 0;
 
 deactivateSelectTool = () => {
-	console.log('deactiveted');
 	mapArea.innerHTML = "Click Here to Select" + " Your Area";
 	map.gestureHandling = "cooperative";
 
 	let main  = document.getElementById('main');
-	console.log(main);
+
 	let elementsRemoving = main.querySelectorAll('svg,span');
-	console.log('y',elementsRemoving);
+
 	elementsRemoving.forEach(e => {
-		//console.log('ee',e);
 		e.remove();
 	});
 	mapArea.innerHTML = "Click Here to Select" + " Your Area";
@@ -357,11 +315,9 @@ deactivateSelectTool = () => {
 	lineCount = 0;
 	googleArr = [];
 	coordinate_Arr = [];
-	console.log(a, dotArr, firstDot, lineCount, coordinate_Arr);
 }
 
 createLine = (arr) => {
-	console.log('create line arrrr', arr,lineCount);
 	let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
 	/*svg.setAttribute("height",100 );
@@ -378,7 +334,6 @@ createLine = (arr) => {
 	let line1 = document.createElementNS('http://www.w3.org/2000/svg','line');
 
 	line1.id = "line"
-	console.log('line1', line1);
 
 	let lineSection = document.getElementById("lineSection" + lineCount );
 

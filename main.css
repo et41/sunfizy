@@ -76,9 +76,9 @@ select {
 }
 
 .round input[type="number"] {
-    width: 8vw;
+    width: 7vw;
     height: 5vh;
-margin: -2.5vw 1vw 0 -8.5vw;
+margin: -2.5vw 2vw 0 -28.5vw;
             border-radius: 50%;
     text-align: center;
     background-color: #FFC107;
@@ -86,10 +86,10 @@ border-width: 0px;
 }
 #power {
 	font-weight: 7px;
-	width: 50%;
-	font-size: 18px;
-	display: flex;
-	flex-wrap: wrap;
+    width: 100%;
+    font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
 
 }
 #total {
@@ -131,8 +131,9 @@ border-width: 0px;
 
 	}
 
+
 	#selectbox {
-	    width: 100%;
+	    width: 50%;
 	    height: auto;
 
 	    margin: auto;
@@ -144,12 +145,16 @@ border-width: 0px;
 	    font-size: 15px;
 
 	}
+	#selectbox h2{
+	    font-size: 16px;
+
+	}
 	.comp {
 	display: flex;
 	flex-wrap: wrap;
 	border-radius:20%;
     margin-bottom: 2vh;
-    margin-left: -2.9vw;
+    margin-left: -3.9vw;
     width:100%;
 	box-shadow: 1px 5px #888888;
 
@@ -222,18 +227,17 @@ border-width: 0px;
 }
 
 .cssCircle {
-
     border-radius: 50%;
-    width: 6.5%;
-    height: 28px;
+    width: 8.5%;
+    height: 23px;
     background: #779BCA;
     border: 1px solid #003580;
     color: #003580;
     text-align: center;
-    font: 18pt Arial, sans-serif;
+    font: 14pt Arial, sans-serif;
     position: relative;
-    left: 29vw;
-
+    left: 8.5vw;
+    margin-top: 1.5px;
 }
 
 .cssCircle:hover {
@@ -242,7 +246,7 @@ border-width: 0px;
 }
 
 .minusSign {
-    left: 19vw;
+    left: -1vw;
     touch-action: none;
 }
 .plusSign {
@@ -266,4 +270,18 @@ input::-webkit-inner-spin-button {
 display: -webkit-inline-box;
 position: relative;
 left: 30vw;
+}
+
+#area {
+display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 49%;
+    /* background-color: red; */
+    border: 1px solid #80690091;
+    height: auto;
+}
+
+#area p {
+	margin: 1vw;
 }
