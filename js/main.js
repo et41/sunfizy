@@ -243,18 +243,20 @@ dotManagement = () => {
 
 	map.gestureHandling = "none";
 	createDot(a);
-
+	console.log('event',event);
 	let dot = document.getElementById("dot"+a);
 	dot.style.display = "inline-block";
 	dot.style.visibility = "visible";
-	dot.style.top = `${event.clientY}px`;
-	dot.style.left = `${event.clientX}px`;
+	dot.style.top = `${event.pageY}px`;
+	dot.style.left = `${event.pageX}px`;
+
 	dot.style.zIndex = "1000";
 
-	dotArr.push([event.clientX,event.clientY]);
+	//dotArr.push([event.clientX,event.clientY]);
+	dotArr.push([event.pageX,event.pageY]);
 	//store first dots coordinate to make a circle which is going to emerge with last dot that have been drawn near to the fisrt dot.
 	if(a == 0) {
-		firstDot[0] = [event.clientX,event.clientY];
+		firstDot[0] = [event.pageX,event.pageY];
 
 		createFirstDotCircle(firstDot).then(function(e) {
 			document.getElementById('dotCircle').addEventListener('click',e => {
