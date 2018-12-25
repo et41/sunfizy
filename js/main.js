@@ -213,6 +213,7 @@ mergeDots = (arr) => {
 
 let mapArea = document.getElementById('mapAreaSelect');
 let mapAreaClickCount = 0;
+let spanText = document.getElementById('spanText');
 
 mapArea.addEventListener('click', (event) => {
 
@@ -245,10 +246,10 @@ dotManagement = () => {
 	createDot(a);
 	console.log('event',event);
 	let dot = document.getElementById("dot"+a);
-	dot.style.display = "inline-block";
+	//dot.style.display = "inline-block";
 	dot.style.visibility = "visible";
-	dot.style.top = `${event.pageY}px`;
-	dot.style.left = `${event.pageX}px`;
+	dot.style.top = `${event.pageY }px`;
+	dot.style.left = `${event.pageX }px`;
 
 	dot.style.zIndex = "1000";
 
@@ -280,7 +281,9 @@ dotManagement = () => {
 activateSelectTool = () => {
 	//console.log('activateee');
 
-	mapArea.innerHTML = "Click Here to Remove" + " Your Area";
+	map.setOptions({draggableCursor:'crosshair'});
+	spanText.style.paddingLeft = "18px"
+	spanText.innerHTML = "Click to Remove";
 
 	mapEl.addEventListener('click', dotManagement);
 
@@ -289,19 +292,30 @@ activateSelectTool = () => {
 let lineCount = 0;
 
 deactivateSelectTool = () => {
-	mapArea.innerHTML = "Click Here to Select" + " Your Area";
+
+	map.setOptions({draggableCursor:''});
+
+	//mapArea.innerHTML = "Click Here to Select" + " Your Area";
+	//mapArea.innerHTML = "CLICK to DRAW";
 	map.gestureHandling = "cooperative";
 
 	let main  = document.getElementById('main');
 
-	let elementsRemoving = main.querySelectorAll('svg,span');
+	let elementsRemoving = main.querySelectorAll('svg,span:not(.slider)');
 
 	elementsRemoving.forEach(e => {
 		e.remove();
 	});
-	mapArea.innerHTML = "Click Here to Select" + " Your Area";
+		spanText.style.paddingLeft = "36px"
+
+	spanText.innerHTML = "Click to Select";
 	mapEl.removeEventListener('click',dotManagement);
-	selection.setMap(null);
+
+	if (typeof(selection) !== 'undefined') {
+			selection.setMap(null);
+	}
+
+
 	google.maps.event.clearListeners(map, 'click');
 
 	//set all used variables to initial values.
@@ -328,8 +342,8 @@ createLine = (arr) => {
 	svg.style.zIndex = "1000";
 	svg.style.top = "0";
 	svg.style.left = "0";*/
-	svg.setAttribute("height",Math.abs(arr[lineCount+1][1] - arr[lineCount][1])+ 3 );
-	svg.setAttribute("width",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]) + 3 );
+	svg.setAttribute("height",Math.abs(arr[lineCount+1][1] - arr[lineCount][1] ) + 15);//3
+	svg.setAttribute("width",Math.abs(arr[lineCount+1][0] - arr[lineCount][0] ) + 15 );
 	svg.id = 'lineSection' + lineCount ;
 	let main = document.getElementById("main");
 	main.appendChild(svg);
@@ -337,36 +351,37 @@ createLine = (arr) => {
 	let line1 = document.createElementNS('http://www.w3.org/2000/svg','line');
 
 	line1.id = "line"
-
+	console.log('arr',arr);
 	let lineSection = document.getElementById("lineSection" + lineCount );
-
-	lineSection.style.top =Math.min(arr[lineCount][1],arr[lineCount+1][1]) +"px";
+	let offset = 2;
+	let init = 0;
+	lineSection.style.top =Math.min(arr[lineCount][1],arr[lineCount+1][1])  +"px";
 	lineSection.style.left =Math.min(arr[lineCount][0],arr[lineCount+1][0]) + "px";
 	//determine line position
 	if(arr[lineCount][1] < arr[lineCount + 1][1] && arr[lineCount][0] > arr[lineCount + 1][0] ) { //x1>x2 y1 < y2
-		line1.setAttribute("x1",3);
-		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+		line1.setAttribute("x1", init);
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1] + offset ) );
 
-		line1.setAttribute("x2",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
-		line1.setAttribute("y2",3);
+		line1.setAttribute("x2",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]+ offset)   );
+		line1.setAttribute("y2",init);
 	} else if (arr[lineCount][1] > arr[lineCount + 1][1] && arr[lineCount][0] < arr[lineCount + 1][0]) { // x1<x2 y1>y2
-		line1.setAttribute("x1",3);
-		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+		line1.setAttribute("x1",init);
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]+ offset)  );
 
-		line1.setAttribute("x2",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
-		line1.setAttribute("y2",3);
+		line1.setAttribute("x2",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]+ offset)  );
+		line1.setAttribute("y2",init);
 	} else if(arr[lineCount][1] > arr[lineCount + 1][1] && arr[lineCount][0] < arr[lineCount + 1][0]) {// x1>x2 y1>y2
-		line1.setAttribute("x1",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
-		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+		line1.setAttribute("x1",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]+ offset)  );
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]+ offset)  );
 
-		line1.setAttribute("x2", 3);
-		line1.setAttribute("y2",3);
+		line1.setAttribute("x2", init);
+		line1.setAttribute("y2",init);
 	} else {
-		line1.setAttribute("x1",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]));
-		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]));
+		line1.setAttribute("x1",Math.abs(arr[lineCount+1][0] - arr[lineCount][0]) + offset);
+		line1.setAttribute("y1",Math.abs(arr[lineCount+1][1] - arr[lineCount][1]) + offset);
 
-		line1.setAttribute("x2", 3);
-		line1.setAttribute("y2",3);
+		line1.setAttribute("x2", init);
+		line1.setAttribute("y2",init);
 	}
 
 	lineSection.appendChild(line1);

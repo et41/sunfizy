@@ -47,24 +47,30 @@ font-family: 'Merriweather', serif;
 	    padding-left: 10px;
 
 }
-.comp {
+/*.comp {
 	display: flex;
 	flex-wrap: wrap;
-	/*background-color: #0000ff1f;*/
+	background-color: #0000ff1f;
 	border-radius:20%;
 	margin-bottom: 10px;
     margin-left: -10px;
     width:80%;
 	box-shadow: 1px 5px #888888;
-	    height: 6vh;
+	height: 6vh;
+
+}*/
+.comp {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20%;
+    margin-bottom: 10px;
+    /* margin-left: -10px; */
+    width: 100%;
+    box-shadow: 1px 5px #888888;
+    height: 6vh;
 
 }
 
-#selectbox h2 {
-	/*text-align: center;*/
-	color:#ffffffbd;
-	    margin-top: 6px;
-}
 #main {
 	display: flex;
 	flex-wrap: wrap;
@@ -77,15 +83,7 @@ select {
     width: 50%;
 }
 
-.round input[type="number"] {
-    width: 7vw;
-    height: 5vh;
-margin: -2.5vw 2vw 0 -28.5vw;
-            border-radius: 50%;
-    text-align: center;
-    background-color: #FFC107;
-border-width: 0px;
-}
+
 #power {
 	font-weight: 7px;
     width: 100%;
@@ -100,16 +98,28 @@ border-width: 0px;
 }
 
 
-#mapbox {
+
+@media screen and (min-width: 700px) {
+
+	.round input[type="number"] {
+	    width: 40px;
+	    height: 33px;
+	/*margin: -2.5vw 2vw 0 -28.5vw;*/
+	            border-radius: 50%;
+	    text-align: center;
+	    background-color: #FFC107;
+	border-width: 0px;
+	}
+	#mapbox {
     /* border: 1px solid #008061; */
     margin: 0;
-    width: 60%;
+    width: 100%;
     height: 80vh;
     /* margin-top: -9px; */
     /* margin-left: -8px; */
     /* cursor: crosshair; */
-}
-#selectbox {
+	}
+	#selectbox {
     box-shadow: 5px 2px #888888;
     border: 1px solid #bddff88f;
     border-radius: 2%;
@@ -118,20 +128,58 @@ border-width: 0px;
     padding-left: 10px;
     width: 39%;
     height: 80vh;
+	}
+	#selectbox h2 {
+	/*text-align: center;*/
+	color:#ffffffbd;
+	    margin-top: 6px;
+	}
+	#signs {
+display: flex;
+    flex-wrap: wrap;
+        position: relative;
+    /* left: 30vw; */
+    padding-left: 2vw;
+}
+.cssCircle {
+    border-radius: 50%;
+    width: 25px;
+    height: 23px;
+    background: #779BCA;
+    border: 1px solid #003580;
+    color: #003580;
+    text-align: center;
+    font: 14pt Arial, sans-serif;
+    position: relative;
+    left: 1.5vw;
+    margin-top: 5.5px;
+}
+.minusSign {
+    left: -1vw;
+    touch-action: none;
+}
 }
 @media screen and (max-width: 700px) {
 	#mapbox {
 		width: 100%;
-    /*height:55vh;*/
+    height: 80vh;
 	}
 	.round {
-	bottom: 3.5vw;
+    bottom: 7.5vw;
     position: relative;
-
-    left: 29vw;
-    top: 10%;
+    left: 26vw;
 
 	}
+	.round input[type="number"] {
+    width: 8vw;
+    height: 5vh;
+    margin: 7.5vw 2vw 0 -30.5vw;
+                border-radius: 50%;
+    text-align: center;
+    background-color: #FFC107;
+border-width: 0px;
+
+}
 
 
 	#selectbox {
@@ -149,7 +197,8 @@ border-width: 0px;
 	}
 	#selectbox h2{
 	    font-size: 16px;
-
+color:#ffffffbd;
+	    margin-top: 6px;
 	}
 	.comp {
 	display: flex;
@@ -157,14 +206,38 @@ border-width: 0px;
 	border-radius:20%;
     margin-bottom: 2vh;
     margin-left: -3.9vw;
-    width:100%;
+    width:107%;
 	box-shadow: 1px 5px #888888;
 
-}
+	}
+
 	.round label {
 		top: -8px;
-
 	}
+	.cssCircle {
+    border-radius: 50%;
+    width: 25px;
+    height: 23px;
+    background: #779BCA;
+    border: 1px solid #003580;
+    color: #003580;
+    text-align: center;
+    font: 14pt Arial, sans-serif;
+    position: relative;
+    left: 4.5vw;
+    margin-top: 3.5px;
+}
+#signs {
+display: flex;
+    flex-wrap: wrap;
+        position: relative;
+    /* left: 30vw; */
+    padding-left: 2vw;
+}
+.minusSign {
+    left: -5vw;
+    touch-action: none;
+}
 }
 
 .dot {
@@ -195,7 +268,7 @@ border-width: 0px;
     left: 0;
 }
 
-#mapAreaSelect {
+/*#mapAreaSelect {
     background-color: #2F4454;
     position: absolute;
     top: 8vh;
@@ -208,8 +281,7 @@ border-width: 0px;
     font-size: 13px;
     color: white;
     margin-top: 20px;
-}
-
+}*/
 #dotCircle {
     background-color: #FFC107;
     opacity: 0.5;
@@ -224,36 +296,21 @@ border-width: 0px;
     width: 28px;
     margin-top: -4px;
     z-index: 1000;
-    cursor: grab;
+    cursor: crosshair;
         opacity: 0;
 }
 
-.cssCircle {
-    border-radius: 50%;
-    width: 8.5%;
-    height: 23px;
-    background: #779BCA;
-    border: 1px solid #003580;
-    color: #003580;
-    text-align: center;
-    font: 14pt Arial, sans-serif;
-    position: relative;
-    left: 8.5vw;
-    margin-top: 1.5px;
-}
 
 .cssCircle:hover {
   background: #3F69A0 ;
   cursor: pointer;
 }
 
-.minusSign {
-    left: -1vw;
-    touch-action: none;
-}
+
 .plusSign {
 	touch-action:none;
 }
+
 
 
 
@@ -268,17 +325,12 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-#signs {
-display: -webkit-inline-box;
-position: relative;
-left: 30vw;
-}
 
 #area {
 display: flex;
     flex-wrap: wrap;
     height: 100%;
-    width: 49%;
+    width: 43%;
     /* background-color: red; */
     border: 1px solid #80690091;
     height: auto;

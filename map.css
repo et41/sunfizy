@@ -54,8 +54,9 @@
     margin-left: 12px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
-    width: 148px;
-    margin-top: 60px;
+
+    width: 153px;
+    margin-top: 69px;
 }
 
 #pac-input:focus {
@@ -71,4 +72,72 @@
 }
 #target {
   width: 345px;
+}
+
+.switch {
+position: absolute;
+    display: inline-block;
+    width: 179px;
+    left: 10px;
+    top: 72px;
+  height: 39px;
+      border: solid 1px;
+          box-shadow: 1px 1px 1px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+    font-family: Roboto;
+    font-size: 18px;
+    padding-left: 32px;
+    padding-top: 9px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 32px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #172a4e;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(146px);
+  -ms-transform: translateX(146px);
+  transform: translateX(146px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

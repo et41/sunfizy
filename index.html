@@ -17,12 +17,16 @@
 	</div>
 	<div id = "main">
 
-		<!--<svg id="lineSection" height="100" width="100" style="z-index: 1000;">-->
-		<button  id= "mapAreaSelect">Click Here to Select Your Area</button>
-
 		<div id= "mapbox">
 
 		</div>
+		<!--<svg id="lineSection" height="100" width="100" style="z-index: 1000;">-->
+		<!--<button  id= "mapAreaSelect">Click Here to Select Your Area</button>-->
+		<label class="switch">
+		  <input id= "mapAreaSelect" type="checkbox">
+		  <span id= "spanText" class="slider">Click to Select</span>
+		</label>
+
 
 		<div id="selectbox">
 			<h2>Select Your Devices</h2>
@@ -30,6 +34,7 @@
 			<div class="comp" id="comp">
 
 				<p ><label >Computer</label></p>
+				<div id="signs">
 					<div class="cssCircle minusSign" id="minus1" style="padding-top:00px">
 					  &#8211;
 					</div>
@@ -41,10 +46,12 @@
 					<div class="cssCircle plusSign" id="plus1">
 					  &#43;
 					</div>
-
+				</div>
 			</div>
 			<div class="comp" id="tv">
 				<p><label >Television</label></p>
+								<div id="signs">
+
 									<div class="cssCircle minusSign" id="minus2" style="padding-top:00px">
 				  &#8211;
 				</div>
@@ -55,10 +62,14 @@
 				<div class="cssCircle plusSign" id="plus2">
 				  &#43;
 				</div>
+				</div>
 
 			</div>
 			<div class="comp" id="comp">
+
 				<p><label>Refrigerator</label></p>
+																<div id="signs">
+
 								<div class="cssCircle minusSign" id="minus3"  style="padding-top:00px">
 				  &#8211;
 				</div>
@@ -68,6 +79,7 @@
 				</div>
 						<div class="cssCircle plusSign" id="plus3">
 				  &#43;
+				</div>
 				</div>
 
 			</div>
