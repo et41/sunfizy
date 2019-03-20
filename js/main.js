@@ -181,6 +181,19 @@ let firstDot = [];
 //[[244, 219], [355, 334],[406, 176]];
 let googleArr = [];
 
+areaSliderChange = (area) => {
+	let areaInfo = document.getElementById('areaInfo');
+	let sliderStyle = document.getElementById('sliderbox');
+
+
+	areaInfo.innerHTML ="Area is " +  area + " " + '\u33A1' ;
+
+	sliderStyle.style.left = `${243}px`;
+
+
+
+}
+
 mergeDots = (arr) => {
 
 	coordinate_Arr.forEach(e => {
@@ -207,6 +220,10 @@ mergeDots = (arr) => {
 	var Area = google.maps.geometry.spherical.computeArea( googleArr );
 	Area = Area.toFixed(2);
 	document.getElementById('areaAmount').innerHTML = Area + " " + '\u33A1' ;
+
+	areaSliderChange(Area);
+
+
 	createLine(dotArr);
 
 };
@@ -326,6 +343,10 @@ deactivateSelectTool = () => {
 		googleArr.splice(i,1);
 	}
 	document.getElementById('areaAmount').innerHTML ="" ;
+	document.getElementById('areaInfo').innerHTML ="" ;
+	document.getElementById('sliderbox').style.left = `-1000px`;
+
+
 	a = 0;
 	dotArr = [];
 	firstDot = [];

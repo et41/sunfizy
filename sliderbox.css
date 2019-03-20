@@ -1,0 +1,15 @@
+.sliderbox {
+     width: 49%;
+    height: 13%;
+    top: 69px;
+    background-color: #3eadd8;
+    position: absolute;
+    left: -1000px;
+    z-index: 3000;
+    box-shadow: 0px 2px 2px 2px;
+}
+
+.sliderbox p {
+	padding-left:10px;
+	padding-top: 10px;
+}

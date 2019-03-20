@@ -59,6 +59,7 @@
     margin-top: 69px;
 }
 
+
 #pac-input:focus {
   border-color: #4d90fe;
 }
@@ -94,11 +95,12 @@ position: absolute;
 .slider {
   position: absolute;
   cursor: pointer;
+
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #3eadd8;
   -webkit-transition: .4s;
   transition: .4s;
     font-family: Roboto;
@@ -114,7 +116,7 @@ position: absolute;
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: #172a4e;
+  background-color: #052938;
   -webkit-transition: .4s;
   transition: .4s;
 }
